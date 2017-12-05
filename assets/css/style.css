@@ -82,7 +82,12 @@
 	text-align: center;
 	color: gray;
 }
-
+.results{
+	display: none;
+}
+.searchForm{
+	display: inline;
+}
 #dumpResults {
 
 	border-style: solid;

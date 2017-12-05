@@ -1,7 +1,25 @@
-<<<<<<< HEAD
+function displayResults(){
+	$(".results").attr("display", "inline");
 
-=======
+}
+
+function hideResults(){
+	$(".results").attr("display", "none");
+
+}
+function hideSearchForm(){
+	$(".searchForm").attr("display", "none");
+
+}
+function displaySearchForm(){
+	$(".searchForm").attr("display", "inline");
+
+}
+
+hideSearchForm();
+
 $(document).ready(function(){
+
 
 $("#seeResults").on("click", function(){
 
@@ -28,8 +46,10 @@ $.ajax(settings).done(function (response) {
 		if (response.restaurants[i] == undefined){
  	 				$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 		}else if (response.restaurants[i].restaurant.location.city_id == city){
-			console.log(response);
- 	 		$("#no-results").empty();
+			displayResults();
+			$("#dumpResults").append(
+			response.restaurants[i].restaurant.name);
+ 	 		// $("#no-results").empty();
 		}else{
 			$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 		}
@@ -52,4 +72,3 @@ $.ajax(settings).done(function (response) {
 
 
 });
->>>>>>> 348b7cee6d44d4ccc473d91206058f778ebc9292
