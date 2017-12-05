@@ -69,3 +69,17 @@
 	text-align: center;
 	color: gray;
 }
+
+#results {
+
+	text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#filterResults {
+
+	text-align: center;
+	color: gray;
+}
+
