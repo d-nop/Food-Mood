@@ -1,0 +1,71 @@
+.jumbotron {
+
+	text-align: center;
+	font-family: 'Archivo Black', sans-serif;
+	background-color: orange;
+	color: white;
+}
+
+#keyTerm {
+
+	align-items: center;
+	color: gray;
+	text-align: center;
+}
+
+.submitInfo {
+
+	border-style: solid;
+	border-color: gray;
+	border-radius: 15px;
+	background-color: white;
+	padding: 30px 30px 30px 30px;
+	text-align: center;
+}
+
+#enterFood {
+
+	font-family: 'Archivo Black', sans-serif;
+	color: gray;
+	text-align: center;
+
+}
+
+#enterCity {
+
+	font-family: 'Archivo Black', sans-serif;
+	color: gray;
+	text-align: center;
+
+}
+
+#city {
+
+	color: gray;
+	text-align: center;
+
+}
+
+#seeResults {
+
+	font-family: 'Archivo Black', sans-serif;
+	color: white;
+	background-color: orange;
+	border-radius: 10px;
+	padding: 30px 30px 30px 30px;
+	font-size: 24px;
+
+	}
+
+#enterRadius {
+	
+	font-family: 'Archivo Black', sans-serif;
+	color: gray;
+	text-align: center;
+}
+
+#radius {
+
+	text-align: center;
+	color: gray;
+}
