@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 $(document).ready(function(){
 
 $("#seeResults").on("click", function(){
@@ -49,3 +52,4 @@ $.ajax(settings).done(function (response) {
 
 
 });
+>>>>>>> 348b7cee6d44d4ccc473d91206058f778ebc9292
