@@ -1,11 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Food Mood</title>
+
+	<title>foodmood</title>
+
+	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="assets/javascript/fm.js"></script>
+ 	<script type="text/javascript" src="assets/javascript/fm.js"></script>
+
+		<style>
+
+	body {
+
+		background: url('assets/images/sandwich.jpg') no-repeat center center fixed;
+
+		background-size: cover; 
+
+        -webkit-background-size: cover; 
+
+        -moz-background-size: cover; 
+
+        -o-background-size: cover; 
+
+        margin: 0; 
+
+        padding: 0; 
+
+        overflow: hidden;
+
+            }
+
+    </style>
+
 </head>
+
 <body>
 
+	<div class="container">
+
+		<div class="jumbotron">
+
+			<h1>In the Food Mood? Look up your Options!</h1>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-12">
+
+				<form class="submitInfo">
+
+				<p id="enterFood"> Enter a food or a restaurant: </p>
+
+				<input id="keyTerm" type="text" value="ex: cheeseburger">
+
+				<br><br>
+
+				<p id="enterCity"> Select Your City: </p>
+
+				<select id="city" name="Your City">
+
+					<option value="288">Atlanta</option>
+
+					<option value="280">New York City</option>
+
+					<option value="281">Los Angeles</option>
+
+					<option value="276">Dallas</option>
+
+					<option value="291">Miami</option>
+
+				</select>
+
+				<br><br>
+
+				<p id="results"> Number of Results: </p>
+
+				<select id="filterResults" name="Number of Results">
+
+					<option value="5">Five</option>
+
+					<option value="10">Ten</option>
+
+					<option value="15">Fifteen</option>
+
+					<option value="20">Twenty</option>
+
+					<option value="25">Twenty-Five</option>
+
+				</select>
+
+				<br><br>
+
+				<!--<p id="enterRadius">Enter the Mile Radius: </p>
+
+				<input id="radius" type="text" value="ex: 10">
+
+				<br><br>-->
+
+				<input id="seeResults" type="button" value="Start Munching!">
+
+			</form>
+
+		</div>
+
+	</div>
+
+</div>
+
 </body>
+
 </html>
