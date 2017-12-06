@@ -15,6 +15,12 @@ function displaySearchForm(){
 	$(".searchForm").css("display", "block");
 
 }
+function goBack(){
+	$( "#back_button" ).on("click", function(){
+		displaySearchForm();
+		hideResults();
+	})
+}
 
 
 $(document).ready(function(){
@@ -22,7 +28,14 @@ $(document).ready(function(){
 
 $("#seeResults").on("click", function(){
 
+$("#dumpResults").text("");
 
+var backButton = $("<input />", {
+			type : 'button',
+			value : 'Not in the mood? Go back!',
+			id : 'back_button'
+		});
+$("#dumpResults").append(backButton);
 var search = $("#keyTerm").val();
 var city = $("#city").val();
 var resultCount = $("#filterResults").val();
@@ -61,14 +74,44 @@ $.ajax(settings).done(function (response) {
 		var restaurantAddress = results.restaurant.location.address;
 		var restaurantRating = results.restaurant.user_rating.aggregate_rating;
 		var restaurantRatingText = results.restaurant.user_rating.rating_text;
+		var restaurantMenu = results.restaurant.menu_url;
 		var resultDiv = $("<div class='result' data-name='" + restaurantName + "' data-address='" + restaurantAddress + "'>");
 		var headerRestaurantName = $("<h1>").text(restaurantName);
 		var pRestaurantAddress = $("<p>").html("<b>Address: </b>" + restaurantAddress);
+
 		var pRestaurantRating = $("<p>").html("<b>Rating: </b>" + restaurantRating + " " + restaurantRatingText);
+		var menuButtonDiv = $('<div />', {'data-role' : 'fieldcontain'});
+		var menuSite = $("<a href='" + restaurantMenu +"' target='_blank'>");
+    	var displayMenuButton = $('<input />', {
+              type  : 'button',
+              value : 'Menu',
+              id    : 'btn_a',
+          });
+        menuSite.append(displayMenuButton);
+		var deliveryButtonDiv = $('<div />', {'data-role' : 'fieldcontain'});
+		var postmateSite = $("<a href='https://postmates.com' target='_blank'>");
+    	 var displayDeliveryButton = $('<input />', {
+              type  : 'button',
+              value : 'Place Delivery',
+              id    : 'btn_b',
+          });
+        postmateSite.append(displayDeliveryButton);
+	menuButtonDiv.append(menuSite).appendTo( $('#pg_menu_content').empty() );
+	deliveryButtonDiv.append(postmateSite).appendTo( $("pg_menu_content").empty() );
+
+
+		var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText + "<hr></hr>");
+
+
+
+
+
 
 		resultDiv.append(headerRestaurantName);
 		resultDiv.append(pRestaurantAddress);
 		resultDiv.append(pRestaurantRating);
+		resultDiv.append(menuButtonDiv);
+		resultDiv.append(deliveryButtonDiv);
 
 
 		console.log(results.restaurant.name)
@@ -78,6 +121,7 @@ $.ajax(settings).done(function (response) {
 			displayResults();
 			$("#dumpResults").append(resultDiv);
  	 		// $("#no-results").empty();
+ 	 		goBack();
 		}else{
 			$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 		}
