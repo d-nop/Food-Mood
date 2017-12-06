@@ -31,7 +31,7 @@
 
         padding: 0; 
 
-        overflow: hidden;
+        /*overflow: hidden;*/
 
             }
 
@@ -41,7 +41,7 @@
 
 <body>
 
-	<div class="container">
+<div class="container">
 
 		<div class="jumbotron">
 
@@ -49,21 +49,23 @@
 
 		</div>
 
-		<div class="row">
+	<div class="row searchForm">
 
 			<div class="col-md-12">
 
 				<form class="submitInfo">
-
+				<div id="no-results"></div>
 				<p id="enterFood"> Enter a food or a restaurant: </p>
 
-				<input id="keyTerm" type="text" value="ex: cheeseburger">
+				<input id="keyTerm" type="text" placeholder="ex: cheeseburger" />
 
 				<br><br>
 
 				<p id="enterCity"> Select Your City: </p>
 
 				<select id="city" name="Your City">
+					
+					<option type="text">Choose Your City</option>
 
 					<option value="288">Atlanta</option>
 
@@ -83,15 +85,15 @@
 
 				<select id="filterResults" name="Number of Results">
 
-					<option value="5">Five</option>
+					<option value="5">5</option>
 
-					<option value="10">Ten</option>
+					<option value="10">10</option>
 
-					<option value="15">Fifteen</option>
+					<option value="15">15</option>
 
-					<option value="20">Twenty</option>
+					<option value="20">20</option>
 
-					<option value="25">Twenty-Five</option>
+					<option value="25">25</option>
 
 				</select>
 
@@ -103,13 +105,22 @@
 
 				<br><br>-->
 
-				<a href="results.html"><input id="seeResults" type="button" value="Start Munching!"></a>
+				<input id="seeResults" type="button" value="Start Munching!">
 				
 
-			</form>
+				</form>
 
-		</div>
+			</div>
 
+	</div>
+
+
+	<div class="row results">	
+			<div class="col-md-12">
+				<div id="dumpResults">
+
+				</div>
+			</div>
 	</div>
 
 </div>

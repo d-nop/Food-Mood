@@ -82,6 +82,9 @@
 	text-align: center;
 	color: gray;
 }
+.results{
+	display: none;
+}
 
 #dumpResults {
 
