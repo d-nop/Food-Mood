@@ -73,6 +73,7 @@ $.ajax(settings).done(function (response) {
 		var resultDiv = $("<div class='result' data-name='" + restaurantName + "' data-address='" + restaurantAddress + "'>");
 		var headerRestaurantName = $("<h1>").text(restaurantName);
 		var pRestaurantAddress = $("<p>").html("<b>Address: </b>" + restaurantAddress);
+
 		var pRestaurantRating = $("<p>").html("<b>Rating: </b>" + restaurantRating + " " + restaurantRatingText);
 		var menuButtonDiv = $('<div />', {'data-role' : 'fieldcontain'});
 		var menuSite = $("<a href='" + restaurantMenu +"' target='_blank'>");
@@ -93,7 +94,12 @@ $.ajax(settings).done(function (response) {
 	menuButtonDiv.append(menuSite).appendTo( $('#pg_menu_content').empty() );
 	deliveryButtonDiv.append(postmateSite).appendTo( $("pg_menu_content").empty() );
 
-	
+
+		var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText + "<hr></hr>");
+
+
+
+
 
 
 		resultDiv.append(headerRestaurantName);
