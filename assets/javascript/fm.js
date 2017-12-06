@@ -37,9 +37,11 @@ var backButton = $("<input />", {
 		});
 $("#dumpResults").append(backButton);
 var search = $("#keyTerm").val();
+var enterAddress = $("#addressTerm").val();
 var city = $("#city").val();
+var cityState = $("#atlanta").text();
 var resultCount = $("#filterResults").val();
-var userAddress = "3632 Boulder Run Road Ellenwood GA";
+var userAddress = "" + enterAddress + " " + cityState;
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -52,8 +54,11 @@ var settings = {
 
 
 
-console.log(search);
+console.log(enterAddress);
 console.log(city);
+console.log(cityState);
+console.log(userAddress)
+console.log(search);
 console.log(resultCount);
 console.log(settings.url);
 $("#no-results").empty();
@@ -100,7 +105,7 @@ $.ajax(settings).done(function (response) {
 	deliveryButtonDiv.append(postmateSite).appendTo( $("pg_menu_content").empty() );
 
 
-		var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText + "<hr></hr>");
+		var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText);
 
 
 
@@ -148,7 +153,7 @@ $.ajax(postMateSettings).done(function (response) {
    response = JSON.parse( response );
    console.log(response);
    let deliveryFee = response.fee/100;
-   var pDeliveryFee = $("<p>").html("<b>The Delivery Fee is: </b>$" + deliveryFee);
+   var pDeliveryFee = $("<p>").html("<b>The Delivery Fee is: </b>$" + deliveryFee + "<hr></hr>");
    console.log("The delivery Fee is "+"$"+deliveryFee);
 	resultDiv.append(pDeliveryFee);
 
