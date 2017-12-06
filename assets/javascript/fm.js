@@ -26,6 +26,7 @@ $("#seeResults").on("click", function(){
 var search = $("#keyTerm").val();
 var city = $("#city").val();
 var resultCount = $("#filterResults").val();
+var userAddress = "3632 Boulder Run Road Ellenwood GA";
 var settings = {
   "async": true,
   "crossDomain": true,
@@ -35,6 +36,8 @@ var settings = {
     "user-key": "78961eb0fa824a1ff1dad4e97f2b1cfd"
   }
 }
+
+
 
 console.log(search);
 console.log(city);
@@ -51,6 +54,8 @@ $.ajax(settings).done(function (response) {
 	if (response.results_found == 0){
 	$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 	}
+
+//response.restaurants[i] = results
 	response.restaurants.forEach((results, index)=>{
 		var restaurantName = results.restaurant.name;
 		var restaurantAddress = results.restaurant.location.address;
@@ -76,8 +81,37 @@ $.ajax(settings).done(function (response) {
 		}else{
 			$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 		}
+		var form = new FormData();
+ form.append("dropoff_address", userAddress);
+ form.append("pickup_address", restaurantAddress);
+
+ var postMateSettings = {
+   "async": true,
+   "crossDomain": true,
+   "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/delivery_quotes",
+   "method": "POST",
+   "headers": {
+     "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
+     "Cache-Control": "no-cache",
+     "Postman-Token": "fd32b0c3-4fbf-eacf-5604-b74f9fe30230"
+   },
+   "processData": false,
+   "contentType": false,
+   "mimeType": "multipart/form-data",
+   "data": form
+ }
+$.ajax(postMateSettings).done(function (response) {
+   response = JSON.parse( response );
+   console.log(response);
+   let deliveryFee = response.fee/100;
+   var pDeliveryFee = $("<p>").html("<b>The Delivery Fee is: </b>$" + deliveryFee);
+   console.log("The delivery Fee is "+"$"+deliveryFee);
+	resultDiv.append(pDeliveryFee);
+
+ });
 	});
-		
+
+
 		// if (response.restaurants[i] == undefined){
  	//  				$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 		// }else if (response.restaurants[i].restaurant.location.city_id == city){
@@ -96,7 +130,63 @@ $.ajax(settings).done(function (response) {
 	});
 
 
+ // var authKey = "a5b4d2b8-921e-4930-832d-2eed566fce06";
 
+
+ // var customer_id = "cus_LXPkZAcVyBksa-";
+ // // var outgoing_address = "atlanta, ga.  3632 Boulder Run Road";
+ // var incoming_address = "999 peachtree st ne, atlanta, ga";
+ // var queryURLBase = "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/delivery_quotes/"
+
+
+
+// // FUNCTIONS
+// // ==========================================================
+
+
+
+
+
+ 
+
+
+
+// $(document).on("click","input-delivery-submit", function(){
+//     event.(preventDefault);
+
+//     let incoming_address = $("#input-delivery-text").val().trim();
+//     let outgoing_address = //need object call from Lavelle for Zomato
+
+//     var form = new FormData();
+//     form.append("dropoff_address", incoming_address);
+//     form.append("pickup_address", outgoing_address);
+
+//   var settings = {
+//     "async": true,
+//     "crossDomain": true,
+//     "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/delivery_quotes",
+//     "method": "POST",
+//     "headers": {
+//     "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
+//     "Cache-Control": "no-cache",
+//     "Postman-Token": "fd32b0c3-4fbf-eacf-5604-b74f9fe30230"
+//   },
+//     "processData": false,
+//     "contentType": false,
+//     "mimeType": "multipart/form-data",
+//     "data": form
+// }
+
+// $.ajax(settings).done(function (response) {
+//    response = JSON.parse(response);
+//     console.log(response);
+//     let deliveryFee = response.fee/100;
+//     $("#grabDivfromKaraandDan").text("The delivery Fee is "+"$"+deliveryFee);
+//     console.log("The delivery Fee is "+"$"+deliveryFee);
+// });
+
+
+// });
 
 
 
