@@ -85,9 +85,7 @@
 .results{
 	display: none;
 }
-.searchForm{
-	display: inline;
-}
+
 #dumpResults {
 
 	border-style: solid;
