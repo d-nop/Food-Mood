@@ -18,13 +18,13 @@ function displaySearchForm(){
 function goBack(){
 	$( "#back_button" ).on("click", function(){
 		displaySearchForm();
+		$(".jumbotron > h1").html("In the Food Mood?<br /> Look up your Options!");
 		hideResults();
 	})
 }
 
 
 $(document).ready(function(){
-
 
 $("#seeResults").on("click", function(){
 
@@ -39,7 +39,7 @@ $("#dumpResults").append(backButton);
 var search = $("#keyTerm").val();
 var enterAddress = $("#addressTerm").val();
 var city = $("#city").val();
-var cityState = $("#atlanta").text();
+var cityState = $("#city option:selected").text();
 var resultCount = $("#filterResults").val();
 var userAddress = "" + enterAddress + " " + cityState;
 var settings = {
@@ -49,8 +49,8 @@ var settings = {
   "method": "GET",
   "headers": {
     "user-key": "78961eb0fa824a1ff1dad4e97f2b1cfd"
-  }
-}
+  			}
+	}
 
 
 
@@ -62,11 +62,15 @@ console.log(search);
 console.log(resultCount);
 console.log(settings.url);
 $("#no-results").empty();
-if (search === ""){
+if (search === "" || enterAddress === "" || city === "Choose Your City"){
+		if (search === "" ){
 		$("#no-results").append("<p style='color: red;'>Please Enter A Keyword</p>");
-	}if (city === "Choose Your City"){
-			$("#no-results").append("<p style='color: red;'>Please Enter A City</p>")			
-	}else {
+		}if (enterAddress === "")	{
+		$("#no-results").append("<p style='color: red;'>Please Enter Your Address</p>");
+		}if (city === "Choose Your City") {
+		$("#no-results").append("<p style='color: red;'>Please Enter A City</p>");
+		}
+	}else{
 $.ajax(settings).done(function (response) {
 	console.log(response);
 	if (response.results_found == 0){
@@ -91,7 +95,7 @@ $.ajax(settings).done(function (response) {
               type  : 'button',
               value : 'Menu',
               id    : 'btn_a',
-          });
+          		});
         menuSite.append(displayMenuButton);
 		var deliveryButtonDiv = $('<div />', {'data-role' : 'fieldcontain'});
 		var postmateSite = $("<a href='https://postmates.com' target='_blank'>");
@@ -99,7 +103,7 @@ $.ajax(settings).done(function (response) {
               type  : 'button',
               value : 'Place Delivery',
               id    : 'btn_b',
-          });
+          		});
         postmateSite.append(displayDeliveryButton);
 	menuButtonDiv.append(menuSite).appendTo( $('#pg_menu_content').empty() );
 	deliveryButtonDiv.append(postmateSite).appendTo( $("pg_menu_content").empty() );
@@ -107,17 +111,11 @@ $.ajax(settings).done(function (response) {
 
 		var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText);
 
-
-
-
-
-
 		resultDiv.append(headerRestaurantName);
 		resultDiv.append(pRestaurantAddress);
 		resultDiv.append(pRestaurantRating);
 		resultDiv.append(menuButtonDiv);
 		resultDiv.append(deliveryButtonDiv);
-
 
 		console.log(results.restaurant.name)
 		if (results.restaurant.location.city_id == city){
@@ -149,18 +147,23 @@ $.ajax(settings).done(function (response) {
    "mimeType": "multipart/form-data",
    "data": form
  }
+ 
+
 $.ajax(postMateSettings).done(function (response) {
+
    response = JSON.parse( response );
    console.log(response);
    let deliveryFee = response.fee/100;
-   var pDeliveryFee = $("<p>").html("<b>The Delivery Fee is: </b>$" + deliveryFee + "<hr></hr>");
-   console.log("The delivery Fee is "+"$"+deliveryFee);
+   var pDeliveryFee = $("<p id='delivery-fee'>").html("<b>The Delivery Fee is: </b>$" + deliveryFee + "<hr></hr>");
 	resultDiv.append(pDeliveryFee);
-
- });
+	resultDiv.addClass("deliverable");
+	
+ 		});
 	});
-
-
+	var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
+	setTimeout(function(){
+		$( "div.result" ).not( ".deliverable" ).append( pError )}, 10000);
+	
 		// if (response.restaurants[i] == undefined){
  	//  				$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
 		// }else if (response.restaurants[i].restaurant.location.city_id == city){
@@ -177,74 +180,6 @@ $.ajax(postMateSettings).done(function (response) {
 }
 
 	});
-
-
- // var authKey = "a5b4d2b8-921e-4930-832d-2eed566fce06";
-
-
- // var customer_id = "cus_LXPkZAcVyBksa-";
- // // var outgoing_address = "atlanta, ga.  3632 Boulder Run Road";
- // var incoming_address = "999 peachtree st ne, atlanta, ga";
- // var queryURLBase = "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/delivery_quotes/"
-
-
-
-// // FUNCTIONS
-// // ==========================================================
-
-
-
-
-
- 
-
-
-
-// $(document).on("click","input-delivery-submit", function(){
-//     event.(preventDefault);
-
-//     let incoming_address = $("#input-delivery-text").val().trim();
-//     let outgoing_address = //need object call from Lavelle for Zomato
-
-//     var form = new FormData();
-//     form.append("dropoff_address", incoming_address);
-//     form.append("pickup_address", outgoing_address);
-
-//   var settings = {
-//     "async": true,
-//     "crossDomain": true,
-//     "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/delivery_quotes",
-//     "method": "POST",
-//     "headers": {
-//     "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
-//     "Cache-Control": "no-cache",
-//     "Postman-Token": "fd32b0c3-4fbf-eacf-5604-b74f9fe30230"
-//   },
-//     "processData": false,
-//     "contentType": false,
-//     "mimeType": "multipart/form-data",
-//     "data": form
-// }
-
-// $.ajax(settings).done(function (response) {
-//    response = JSON.parse(response);
-//     console.log(response);
-//     let deliveryFee = response.fee/100;
-//     $("#grabDivfromKaraandDan").text("The delivery Fee is "+"$"+deliveryFee);
-//     console.log("The delivery Fee is "+"$"+deliveryFee);
-// });
-
-
-// });
-
-
-
-
-
-
-
-
-
 
 
 });
