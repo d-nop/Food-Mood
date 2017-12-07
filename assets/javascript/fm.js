@@ -153,7 +153,7 @@ $.ajax(postMateSettings).done(function (response) {
 
    response = JSON.parse( response );
    console.log(response);
-   let deliveryFee = response.fee/100;
+   let deliveryFee = (response.fee/100).toFixed(2);
    var pDeliveryFee = $("<p id='delivery-fee'>").html("<b>The Delivery Fee is: </b>$" + deliveryFee + "<hr></hr>");
 	resultDiv.append(pDeliveryFee);
 	resultDiv.addClass("deliverable");
