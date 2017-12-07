@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>foodmood</title>
+
+	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ 	<script type="text/javascript" src="assets/javascript/fm.js"></script>
+
+		<style>
+
+	body {
+
+		background: url('assets/images/sandwich.jpg') no-repeat center center fixed;
+
+		background-size: cover; 
+
+        -webkit-background-size: cover; 
+
+        -moz-background-size: cover; 
+
+        -o-background-size: cover; 
+
+        margin: 0; 
+
+        padding: 0; 
+
+        /*overflow: hidden;*/
+
+            }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+		<div class="jumbotron">
+
+			<h1>In the Food Mood?<br />Look up your Options!</h1>
+
+		</div>
+
+	<div class="row searchForm">
+
+			<div class="col-md-12">
+
+				<form class="submitInfo">
+				<div id="no-results"></div>
+				<p id="enterFood"> Enter a food or a restaurant: </p>
+
+				<input id="keyTerm" type="text" placeholder="ex: cheeseburger" />
+
+				<br><br>
+
+				<p id="enterAddress"> Enter your address: </p>
+
+				<input id="addressTerm" type="text" placeholder="ex: 123 Test St." />
+
+				<br><br>
+
+				<p id="enterCity"> Select Your City: </p>
+
+				<select id="city" name="Your City">
+					
+					<option type="text">Choose Your City</option>
+
+					<option value="288">Atlanta, GA</option>
+
+					<option value="280">New York City, NY</option>
+
+					<option value="281">Los Angeles, CA</option>
+
+					<option value="276">Dallas, TX</option>
+
+					<option value="291">Miami, FL</option>
+
+				</select>
+<!-- 
+				<br><br>
+
+				<p id="enterState"> Select Your State: </p>
+
+				<select id="state" name="Your State">
+					
+					<option type="text">Choose Your State</option>
+
+					<option value="288">Georiga</option>
+
+					<option value="280">New York</option>
+
+					<option value="281">California</option>
+
+					<option value="276">Texas</option>
+
+					<option value="291">Florida</option>
+
+				</select>
+
+				<br><br> -->
+
+				<p id="results"> Number of Results: </p>
+
+				<select id="filterResults" name="Number of Results">
+
+					<option value="5">5</option>
+
+					<option value="10">10</option>
+
+					<option value="15">15</option>
+
+					<option value="20">20</option>
+
+				</select>
+
+				<br><br>
+
+				<!--<p id="enterRadius">Enter the Mile Radius: </p>
+
+				<input id="radius" type="text" value="ex: 10">
+
+				<br><br>-->
+
+				<input id="seeResults" type="button" value="Start Munching!">
+				
+
+				</form>
+
+			</div>
+
+	</div>
+
+
+	<div class="row results">	
+			<div class="col-md-12">
+				<div id="dumpResults">	
+
+				</div>
+			</div>
+	</div>
+
+</div>
+
+</body>
+
+</html>
