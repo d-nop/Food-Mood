@@ -213,4 +213,101 @@ hr {
     height: 3px !important;
 }
 
+@media only screen and (max-width: 500px) {
+    #seeResults {
+   
+       	display: inline-block;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+	#seeResults {
+
+		display: inline-block;
+		text-align: center;
+		font-size: 20px;
+	}
+}
+
+.deliveryForm {
+
+	border-style: solid;
+	border-color: gray;
+	border-radius: 15px;
+	background-color: white;
+	padding: 30px 30px 30px 30px;
+	text-align: center;
+}
+
+#dropOffName {
+
+		text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#dropOffAddress {
+		text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#pickUpName {
+
+	text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#pickUpAddress {
+
+	text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#custNumber {
+
+	text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#dropOffNotes {
+
+	text-align: center;
+	color: gray;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+#placeDelivery {
+
+
+	font-family: 'Archivo Black', sans-serif;
+	color: white;
+	background-color: orange;
+	border-radius: 10px;
+	padding: 30px 30px 30px 30px;
+	font-size: 24px;
+
+}
+
+.delivery {
+
+	display: none;
+}
+
+#displayStatus {
+	color:orange;
+	border-style: solid;
+	border-color: gray;
+	border-radius: 15px;
+	background-color: white;
+	padding: 30px 30px 30px 30px;
+	text-align: left;
+
+	}
 

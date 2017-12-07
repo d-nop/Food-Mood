@@ -6,9 +6,11 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/javascript/fm.js"></script>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+   
     <style>
     body {
 
@@ -32,6 +34,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="jumbotron">
             <h1>In the Food Mood?<br />Look up your Options!</h1>
@@ -59,26 +62,6 @@
                     </select>
                
 				<br><br>
-
-				<!--<p id="enterState"> Select Your State: </p>
-
-				<select id="state" name="Your State">
-					
-					<option type="text">Choose Your State</option>
-
-					<option value="288">Georiga</option>
-
-					<option value="280">New York</option>
-
-					<option value="281">California</option>
-
-					<option value="276">Texas</option>
-
-					<option value="291">Florida</option>
-
-				</select>
-
-				<br><br> -->
                     <p id="results"> Number of Results: </p>
                     <select id="filterResults" name="Number of Results">
                         <option value="5">5</option>
@@ -93,17 +76,89 @@
 				<input id="radius" type="text" value="ex: 10">
 
 				<br><br>-->
-                    <input id="seeResults" type="button" value="Start Munching!">
-                </form>
-            </div>
-        </div>
-        <div class="row results">
-            <div class="col-md-12">
-                <div id="dumpResults">
-                </div>
-            </div>
-        </div>
-    </div>
+
+				<input id="seeResults" type="button" value="Start Munching!">
+				
+
+				</form>
+
+			</div>
+
+	</div>
+
+
+	<div class="row results">	
+			<div class="col-md-12">
+				<div id="dumpResults">	
+
+				</div>
+			</div>
+	</div>
+
+	<div class="row delivery">
+
+		<div class="col-md-12">
+
+				<form class="deliveryForm">
+
+					<p id="dropOffName"> Drop-off Name: </p>
+
+					<input id="enterDropOffName" type="text">
+
+					<br><br>
+
+					<p id="dropOffAddress"> Drop-off Address: </p>
+
+					<input id="enterDropOffAddress" type="text">
+
+					<br><br>
+
+					<p id="pickUpName"> Pick-up Name: </p>
+
+					<input id="enterPickUpName" type="text">
+
+					<br><br>
+
+					<p id="pickUpAddress"> Pick-up Address: </p>
+
+					<input id="enterPickUpAddress" type="text">
+
+					<br><br>
+
+					<p id="custNumber"> Customer Number: </p>
+
+					<input id="enterCustNumber" type="text">
+
+					<br><br>
+
+					<p id="dropOffNotes"> Additional Notes: </p>
+
+					<textarea id="enterDropOffNotes" rows="10" cols="50"></textarea>
+
+					<br><br>
+
+					<input id="placeDelivery" type="button" value="Place your order!">
+
+				</form>
+
+			<div class="row status">
+
+				<div class="col-md-12">
+
+					<div id="displayStatus">
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+
+</div>
+
 </body>
 
 </html>
