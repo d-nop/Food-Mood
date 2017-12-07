@@ -89,24 +89,18 @@ $.ajax(settings).done(function (response) {
 		var pRestaurantAddress = $("<p>").html("<b>Address: </b>" + restaurantAddress);
 
 		var pRestaurantRating = $("<p>").html("<b>Rating: </b>" + restaurantRating + " " + restaurantRatingText);
-		var menuButtonDiv = $('<div />', {'data-role' : 'fieldcontain'});
-		var menuSite = $("<a href='" + restaurantMenu +"' target='_blank'>");
-    	var displayMenuButton = $('<input />', {
-              type  : 'button',
-              value : 'Menu',
-              id    : 'btn_a',
-          		});
-        menuSite.append(displayMenuButton);
-		var deliveryButtonDiv = $('<div />', {'data-role' : 'fieldcontain'});
-		var postmateSite = $("<a href='https://postmates.com' target='_blank'>");
-    	 var displayDeliveryButton = $('<input />', {
-              type  : 'button',
-              value : 'Place Delivery',
-              id    : 'btn_b',
-          		});
-        postmateSite.append(displayDeliveryButton);
-	menuButtonDiv.append(menuSite).appendTo( $('#pg_menu_content').empty() );
-	deliveryButtonDiv.append(postmateSite).appendTo( $("pg_menu_content").empty() );
+		
+		var menuSite = $("<a href='" + restaurantMenu + "' target='_blank'>");
+        var displayMenuButton = $('<button>');
+        	displayMenuButton.attr("class", "btn btn-primary btn_a");
+            displayMenuButton.text("Menu");
+            menuSite.append(displayMenuButton);
+        var span = $("<span id='buttons'>");
+        	span.append(menuSite);
+		var displayDeliveryButton = $('<button>', );
+            displayDeliveryButton.attr("class", "btn btn-success btn_b");
+            displayDeliveryButton.text("Place Delivery");
+            span.append(displayDeliveryButton);
 
 
 		var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText);
@@ -114,8 +108,7 @@ $.ajax(settings).done(function (response) {
 		resultDiv.append(headerRestaurantName);
 		resultDiv.append(pRestaurantAddress);
 		resultDiv.append(pRestaurantRating);
-		resultDiv.append(menuButtonDiv);
-		resultDiv.append(deliveryButtonDiv);
+		resultDiv.append(span);
 
 		console.log(results.restaurant.name)
 		if (results.restaurant.location.city_id == city){

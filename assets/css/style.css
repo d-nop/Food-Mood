@@ -127,7 +127,7 @@
 	text-align: left;
 
 	}
-#btn_a {
+.btn_a {
     border-style: solid;
     border-color: gray;
     background-color: orange;
@@ -135,10 +135,9 @@
     font-family: 'Archivo Black', sans-serif;
     font-size: 25px;
     text-align: center;
-    float:right;
 
 }
-#btn_b {
+.btn_b {
     border-style: solid;
     border-color: gray;
     background-color: orange;
@@ -147,9 +146,12 @@
     font-size: 25px;
     margin-right: 15px;
     text-align: center;
-    float: right;
   
 
+}
+
+#buttons{
+	float: right;
 }
 .results h1 {
 
