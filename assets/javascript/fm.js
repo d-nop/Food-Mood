@@ -183,3 +183,100 @@ $.ajax(postMateSettings).done(function (response) {
 
 
 });
+
+var form = new FormData();
+form.append("pickup_address", "9 palisades rd atlanta ga");
+form.append("dropoff_address", "999 peachtree st atlanta ga");
+form.append("pickup_name", "brad's house");
+form.append("pickup_phone_number", "4046975828");
+form.append("dropoff_notes", "only leave food if a dog is in backyard");
+form.append("requires_id", "1");
+form.append("dropoff_name", "Leaveil");
+form.append("dropoff_phone_number", "4046669898");
+form.append("manifest", "tuna melt");
+form.append("quote_id", "del_LX_dfQA3jpNcn-");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/deliveries/del_LX_pmRqP1VEexV",
+  "method": "POST",
+  "headers": {
+    "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "cafc9f70-63a1-4201-da64-0d10afa2283d"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+
+  response = JSON.parse( response );
+  console.log(response);
+});
+
+var form = new FormData();
+form.append("pickup_address", "9 palisades rd atlanta ga");
+form.append("dropoff_address", "999 peachtree st atlanta ga");
+form.append("pickup_name", "brad's house");
+form.append("pickup_phone_number", "404-697-5828");
+form.append("dropoff_name", "Leaveil");
+form.append("dropoff_phone_number", "4046669898");
+form.append("manifest", "tuna melt");
+form.append("quote_id", "dqt_LX_pgNAwBmTb_-");
+form.append("robo_pickup", "00:01:00");
+form.append("robo_pickup_complete", "00:01:30");
+form.append("robo_dropoff", "00:03:00");
+form.append("robo_delivered", "00:04:30");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+ // "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/deliveries/",
+  "method": "POST",
+  "headers": {
+    "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "80f0e57b-493a-5a20-83ab-eee6341d0853"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+  response = JSON.parse( response );
+  console.log(response);
+});
+
+
+
+var utcTime = "2017-12-07T23:08:11Z";
+//var localTime = new Date (utcTime);
+//console.log(localTime);
+
+
+
+timeConverter = (utcTime) => {
+  console.log("The TIME IN UTC IS "+ utcTime)
+  var localTime = new Date(utcTime);
+  var amPm = new Date(localTime);
+  var options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+  };
+  var timeString = amPm.toLocaleString('en-US', options);
+  console.log("THE LOCAL TIME IS "+ timeString);
+
+    //console.log(localDate);
+}
+
+timeConverter(utcTime);
+
+
+
