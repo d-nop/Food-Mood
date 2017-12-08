@@ -141,6 +141,7 @@ display: none;
     border-color: gray;
     border-width: 2px;
     border-radius: 20px;
+
 }
 
 .btn_a {
@@ -229,6 +230,7 @@ hr {
     border-color: gray;
     border-width: 2px;
     border-radius: 20px;
+
 }
 
 #dropOffName {
@@ -351,4 +353,5 @@ hr {
     background-color: white;
     padding: 30px 30px 30px 30px;
     text-align: left;
+    display: none;
 }
