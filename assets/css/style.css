@@ -353,9 +353,53 @@ hr {
     color:orange;
     border-style: solid;
     border-color: gray;
+    border-width: 2px;
     border-radius: 15px;
     background-color: white;
     padding: 30px 30px 30px 30px;
     text-align: left;
-    display: none;
+  
 }
+
+
+#status-animate {
+	height: 70px;
+    margin: 2%;
+	border-radius: 10px;
+    position: relative;
+    -webkit-animation: mymove 5s; 
+    -webkit-animation-iteration-count: infinite; 
+    animation: bgflash 5s;
+    animation-iteration-count: infinite;
+}
+
+#status-animate h1 {
+	line-height: 200%;
+	color: orange;
+    position: relative;
+    -webkit-animation: mymove 5s;  
+    -webkit-animation-iteration-count: infinite; 
+    animation: statusmove 5s;
+    animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes mymove {
+    from {top: 0px;}
+    to {top: 200px;}
+}
+
+@keyframes statusmove {
+    0% {left: 0px;}
+    50% {color: red; left: 70%;}
+    100% {left: 0px;}
+   
+}
+
+@keyframes bgflash {
+    0% {}
+    50% {background-color: orange;}
+    100% {}
+   
+}
+
