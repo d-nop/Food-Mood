@@ -1,3 +1,9 @@
+function displayLoading() {
+    $(".delivery").css("display", "none");
+    $(".loading").css("display", "block");
+
+}
+
 function displayResults() {
     $(".results").css("display", "block");
     $(".jumbotron > h1").html("Choose Your Mood");
@@ -6,14 +12,16 @@ function displayResults() {
 				$("div.result").not(".deliverable").append(pError);
 }
 
-function displayLoading() {
-    $(".loading").css("display", "block");
-
-}
-
 function displayDelivery() {
     $(".delivery").css("display", "block");
     $(".jumbotron > h1").html("Time For Your Delivery!");
+
+}
+
+function displayStatus() {
+    $(".loading").css("display", "none");
+    $(".delivery").css("display", "none");
+    $(".status").css("display", "block");
 
 }
 
@@ -58,6 +66,22 @@ function goBackToResults() {
         $("#deliveryFeeHTML").remove();
 
     })
+}
+
+timeConverter = (utcTime) => {
+  console.log("The TIME IN UTC IS "+ utcTime)
+  var localTime = new Date(utcTime);
+  var amPm = new Date(localTime);
+  var options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+  };
+  var timeString = amPm.toLocaleString('en-US', options);
+  console.log("THE LOCAL TIME IS "+ timeString);
+$("#delivery-time").html("<h2>Your Delivery Should Arrive by " + timeString + "</h2>");
+
+    //console.log(localDate);
 }
 
 
@@ -237,43 +261,121 @@ $(document).ready(function() {
 		            id: 'back-to-results'
 		        });
         		$(".deliveryForm").prepend(backButton);
-                var dropOffName = $("#enterDropOffName").val();
                 var dropOffAddress = $(this).closest('.result').attr("data-dropoff-address");
                 $("#enterDropOffAddress").val(dropOffAddress);
+
                 var pickupName = $(this).closest('.result').attr("data-pickup-name");
                 $("#enterPickUpName").val(pickupName);
+
                 var pickupAddress = $(this).closest('.result').attr("data-pickup-address");
                 $("#enterPickUpAddress").val(pickupAddress);
+
                 var quoteID = $(this).closest('.result').attr("data-quote");
-                $("#enterCustNumber").val(quoteID);
+                // $("#enterCustNumber").val(quoteID);
+
                 var deliveryFee = $(this).closest('.result').attr("data-delivery-fee");
+
                 var deliveryFeeHTML = '<b id="deliveryFeeHTML">Your Delivery Fee Is:  $' + deliveryFee + '<br /><br /><br /></b>'
                 $("#dropOffNotes").prepend(deliveryFeeHTML);
                 // console.log(test);
                 hideResults();
                 displayDelivery();
         		goBackToResults();
+        			$('#placeDelivery').on('click', function(){
+        				$(".submitInfo").html("Please wait while we process your delivery.")
+						displayLoading();
+               			var dropOffName = $("#enterDropOffName").val();
+                		console.log(dropOffName);
+        				var form = new FormData();
+						form.append("pickup_address", pickupAddress);
+						form.append("dropoff_address", dropOffAddress);
+						form.append("pickup_name", pickupName);
+						form.append("pickup_phone_number", "404-697-5828");
+						form.append("dropoff_name", dropOffName);
+						form.append("dropoff_phone_number", "4046669898");
+						form.append("manifest", "tuna melt");
+						form.append("quote_id", quoteID);
+						form.append("robo_pickup", "00:00:10");
+						// form.append("robo_pickup_complete", "00:00:20");
+						form.append("robo_dropoff", "00:00:20");
+						form.append("robo_delivered", "00:00:30");
 
 
+						var postmateCreateDelivery = {
+						  "async": true,
+						  "crossDomain": true,
+						 "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/deliveries/",
+						  "method": "POST",
+						  "headers": {
+						    "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
+						    "Cache-Control": "no-cache",
+						    "Postman-Token": "80f0e57b-493a-5a20-83ab-eee6341d0853"
+						  },
+						  "processData": false,
+						  "contentType": false,
+						  "mimeType": "multipart/form-data",
+						  "data": form
+						}
+
+						$.ajax(postmateCreateDelivery).done(function (response) {
+						  response = JSON.parse( response );
+						  console.log(response);
+						  var deliveryID = response.id;
+						  console.log(deliveryID);
+						  				var postmateDeliveryStatus = {
+										  "async": true,
+										  "crossDomain": true,
+										  "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/deliveries/" + deliveryID,
+										  "method": "POST",
+										  "headers": {
+										    "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
+										    "Cache-Control": "no-cache",
+										    "Postman-Token": "cafc9f70-63a1-4201-da64-0d10afa2283d"
+										  },
+										  "processData": false,
+										  "contentType": false,
+										  "mimeType": "multipart/form-data"
+										}
+						  		$.ajax(postmateDeliveryStatus).done(function (response) {
+									  response = JSON.parse( response );
+									  console.log(response);
+									  displayStatus();
+									  setInterval(function(){
+									  	$.ajax(postmateDeliveryStatus).done(function (response) {
+													response = JSON.parse( response );
+													console.log(response);
+													var deliveryStatus = response.status;
+													$("#status-animate h1").html(deliveryStatus.charAt(0).toUpperCase() + deliveryStatus.slice(1));
+													
+													if (deliveryStatus === "pickup_complete"){
+														$("#status-animate h1").html("Pickup Complete");
+														}
+													if (deliveryStatus === "delivered"){
+														$("#courier-name").html("<h2>Your Item Has Been Delivered!</h2>");	
+														$("#delivery-time").html("");
+														}else if (deliveryStatus === "pickup" || deliveryStatus === "pickup_complete" || deliveryStatus === "dropoff"){
+														// var deliveryETA = response.dropoff_deadline;
+														// timeConverter(deliveryETA);
+														var courier = response.courier.name;
+														$("#courier-name").html("<h2>Your courier " + courier + " is on the way!</h2>");
+														$("#delivery-time").html("<h3>Your Delivery Should Arrive In Just A Few Minutes</h3>");
+														}
+												});
+									  		}, 12000);
+										
+									//end of postmateDeliveryStatus ajax call  
+									});	
+
+
+						  	//end of postmateCreateDelivery ajax call
+							});
+
+
+        				//end of #placeDelivery button
+        				})
+
+        			//end of .btn_b click handler
                     })
-					
-					// $.ajax(postMateSettings).done(function(response) {
-     //            var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
-     //            setTimeout(function() {
-     //                $("div.result").not(".deliverable").append(pError)
-     //            	}, 5000);
-     //            });
-                // if (response.restaurants[i] == undefined){
-                //  				$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
-                // }else if (response.restaurants[i].restaurant.location.city_id == city){
-                // 	hideSearchForm();
-                // 	displayResults();
-                // 	$("#dumpResults").append(
-                // 	response.restaurants[i].restaurant.name);
-                //  		// $("#no-results").empty();
-                // }else{
-                // 	$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
-                // }
 //zomato ajax call closed
             });
 //else statement closed
@@ -283,99 +385,3 @@ $(document).ready(function() {
 //document ready closed
 
 });
-
-var form = new FormData();
-form.append("pickup_address", "9 palisades rd atlanta ga");
-form.append("dropoff_address", "999 peachtree st atlanta ga");
-form.append("pickup_name", "brad's house");
-form.append("pickup_phone_number", "4046975828");
-form.append("dropoff_notes", "only leave food if a dog is in backyard");
-form.append("requires_id", "1");
-form.append("dropoff_name", "Leaveil");
-form.append("dropoff_phone_number", "4046669898");
-form.append("manifest", "tuna melt");
-form.append("quote_id", "del_LX_dfQA3jpNcn-");
-
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/deliveries/del_LX_pmRqP1VEexV",
-  "method": "POST",
-  "headers": {
-    "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
-    "Cache-Control": "no-cache",
-    "Postman-Token": "cafc9f70-63a1-4201-da64-0d10afa2283d"
-  },
-  "processData": false,
-  "contentType": false,
-  "mimeType": "multipart/form-data",
-  "data": form
-}
-
-$.ajax(settings).done(function (response) {
-
-  response = JSON.parse( response );
-  console.log(response);
-});
-
-var form = new FormData();
-form.append("pickup_address", "9 palisades rd atlanta ga");
-form.append("dropoff_address", "999 peachtree st atlanta ga");
-form.append("pickup_name", "brad's house");
-form.append("pickup_phone_number", "404-697-5828");
-form.append("dropoff_name", "Leaveil");
-form.append("dropoff_phone_number", "4046669898");
-form.append("manifest", "tuna melt");
-form.append("quote_id", "dqt_LX_pgNAwBmTb_-");
-form.append("robo_pickup", "00:01:00");
-form.append("robo_pickup_complete", "00:01:30");
-form.append("robo_dropoff", "00:03:00");
-form.append("robo_delivered", "00:04:30");
-
-var settings = {
-  "async": true,
-  "crossDomain": true,
- // "url": "https://cors-anywhere.herokuapp.com/https://api.postmates.com/v1/customers/cus_LXPkZAcVyBksa-/deliveries/",
-  "method": "POST",
-  "headers": {
-    "Authorization": "Basic YTViNGQyYjgtOTIxZS00OTMwLTgzMmQtMmVlZDU2NmZjZTA2Og==",
-    "Cache-Control": "no-cache",
-    "Postman-Token": "80f0e57b-493a-5a20-83ab-eee6341d0853"
-  },
-  "processData": false,
-  "contentType": false,
-  "mimeType": "multipart/form-data",
-  "data": form
-}
-
-$.ajax(settings).done(function (response) {
-  response = JSON.parse( response );
-  console.log(response);
-});
-
-
-
-var utcTime = "2017-12-07T23:08:11Z";
-//var localTime = new Date (utcTime);
-//console.log(localTime);
-
-
-
-timeConverter = (utcTime) => {
-  console.log("The TIME IN UTC IS "+ utcTime)
-  var localTime = new Date(utcTime);
-  var amPm = new Date(localTime);
-  var options = {
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true
-  };
-  var timeString = amPm.toLocaleString('en-US', options);
-  console.log("THE LOCAL TIME IS "+ timeString);
-
-    //console.log(localDate);
-}
-
-timeConverter(utcTime);
-
-

@@ -44,11 +44,11 @@
                 <form class="submitInfo">
                     <div id="no-results"></div>
                     <p id="enterFood"> Enter a food or a restaurant: </p>
-                    <input id="keyTerm" type="text" placeholder="ex: cheeseburger" />
+                    <input id="keyTerm" type="text" placeholder="ex: Steak or Subway" />
                     <br>
                     <br>
                     <p id="enterAddress"> Enter your address: </p>
-                    <input id="addressTerm" type="text" placeholder="ex: 123 Test St." />
+                    <input id="addressTerm" type="text" placeholder="" />
                     <br>
                     <br>
                     <p id="enterCity"> Select Your City: </p>
@@ -84,7 +84,7 @@
 
 			</div>
 
-	</div>
+		</div>
 	<div class="row loading">	
 			<div class="col-md-12">
 				<div class="submitInfo">	
@@ -141,18 +141,27 @@
 					<input id="placeDelivery" type="button" value="Place your order!">
 
 				</form>
+		</div>
+	</div>
+	<div class="row status" style="display: none;">
 
-			<div class="row status">
+			<div class="col-md-12">
 
-				<div class="col-md-12">
-
-					<div id="displayStatus">
-
+				<div id="displayStatus">
+					<div id='courier-name' style='text-align: center;'>
 					</div>
-
+					<div id='delivery-time' style='text-align: center;'>
+					</div>
+					<div id="status-animate">
+						<h1>Pending</h1>
+					</div>
 				</div>
 
 			</div>
+
+	</div>
+
+			
 
 
 
