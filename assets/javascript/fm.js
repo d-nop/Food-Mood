@@ -1,10 +1,34 @@
 function displayResults() {
     $(".results").css("display", "block");
+    $(".jumbotron > h1").html("Choose Your Mood");
+    displayResults.called = true;
+    var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
+				$("div.result").not(".deliverable").append(pError);
+}
+
+function displayLoading() {
+    $(".loading").css("display", "block");
+
+}
+
+function displayDelivery() {
+    $(".delivery").css("display", "block");
+    $(".jumbotron > h1").html("Time For Your Delivery!");
+
+}
+
+function hideDelivery() {
+    $(".delivery").css("display", "none");
 
 }
 
 function hideResults() {
     $(".results").css("display", "none");
+
+}
+
+function hideLoading() {
+    $(".loading").css("display", "none");
 
 }
 
@@ -19,10 +43,20 @@ function displaySearchForm() {
 }
 
 function goBack() {
-    $("#back_button").on("click", function() {
+    $(".back_button").on("click", function() {
         displaySearchForm();
         $(".jumbotron > h1").html("In the Food Mood?<br /> Look up your Options!");
         hideResults();
+    })
+}
+
+function goBackToResults() {
+    $(document).on('click', '.back_button', function() {
+        hideDelivery();
+        $(".jumbotron > h1").html("Choose Your Mood");
+        displayResults();
+        $("#deliveryFeeHTML").remove();
+
     })
 }
 
@@ -31,12 +65,13 @@ $(document).ready(function() {
 
     $("#seeResults").on("click", function() {
 
-        $("#dumpResults").text("");
+        $("#dumpResults").empty();
 
         var backButton = $("<input />", {
             type: 'button',
             value: 'Not in the mood? Go back!',
-            id: 'back_button'
+            class: 'back_button',
+		    id: 'back-to-search'
         });
         $("#dumpResults").append(backButton);
         var search = $("#keyTerm").val();
@@ -76,20 +111,24 @@ $(document).ready(function() {
                 $("#no-results").append("<p style='color: red;'>Please Enter A City</p>");
             }
         } else {
+        	hideSearchForm();
+            displayLoading();
             $.ajax(settings).done(function(response) {
                 console.log(response);
                 if (response.results_found == 0) {
                     $("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
+                    	hideLoading();
+                        displaySearchForm();
                 }
 
                 //response.restaurants[i] = results
-                response.restaurants.forEach((results, index) => {
+                response.restaurants.forEach((results, index, array) => {
                     var restaurantName = results.restaurant.name;
                     var restaurantAddress = results.restaurant.location.address;
                     var restaurantRating = results.restaurant.user_rating.aggregate_rating;
                     var restaurantRatingText = results.restaurant.user_rating.rating_text;
                     var restaurantMenu = results.restaurant.menu_url;
-                    var resultDiv = $("<div class='result' data-name='" + restaurantName + "' data-address='" + restaurantAddress + "'>");
+                    var resultDiv = $(`<div class="result" data-pickup-name="${restaurantName}" data-pickup-address="${restaurantAddress}" data-dropoff-address="${userAddress}">`);
                     var headerRestaurantName = $("<h1>").text(restaurantName);
                     var pRestaurantAddress = $("<p>").html("<b>Address: </b>" + restaurantAddress);
 
@@ -109,7 +148,7 @@ $(document).ready(function() {
                     var displayDeliveryButton = $('<button>', );
                     displayDeliveryButton.attr("class", "btn btn-success btn_b");
                     displayDeliveryButton.text("Place Delivery");
-                    span.append(displayDeliveryButton);
+                    // span.append(displayDeliveryButton);
                     // deliveryButtonDiv.append(displayDeliveryButton);
 
 
@@ -127,16 +166,10 @@ $(document).ready(function() {
                     // resultDiv.append(deliveryButtonDiv);
 
                     console.log(results.restaurant.name)
-                    if (results.restaurant.location.city_id == city) {
-                        hideSearchForm();
-                        $(".jumbotron > h1").html("Choose Your Mood");
-                        displayResults();
-                        $("#dumpResults").append(resultDiv);
-                        // $("#no-results").empty();
-                        goBack();
-                    } else {
-                        $("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
-                    }
+                    if (results.restaurant.location.city_id != city) {
+                        $("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>");
+                        }
+                    $("#dumpResults").append(resultDiv);
                     var form = new FormData();
                     form.append("dropoff_address", userAddress);
                     form.append("pickup_address", restaurantAddress);
@@ -159,21 +192,77 @@ $(document).ready(function() {
 
 
                     $.ajax(postMateSettings).done(function(response) {
-
                         response = JSON.parse(response);
                         console.log(response);
+                        console.log("-------------------------");
                         let deliveryFee = (response.fee / 100).toFixed(2);
                         var pDeliveryFee = $("<p id='delivery-fee'>").html("<b>The Delivery Fee is: </b>$" + deliveryFee + "<hr></hr>");
+                        var quoteID = response.id;
+                        resultDiv.attr('data-quote', quoteID);
+                        resultDiv.attr('data-delivery-fee', deliveryFee);
                         resultDiv.append(pDeliveryFee);
                         resultDiv.addClass("deliverable");
+                        if ("div.deliverable"){
+                        span.append(displayDeliveryButton)
+                    	}
+               			
+                			if (index === array.length - 1){ 
+       								console.log("Last callback call at index " + index + " with value " + results ); 
+  								 // noDelivery();
+  								 setTimeout(function() {
+  								 	hideLoading();
+               						displayResults();
+                					goBack();
+  								 }, 2000);
 
+  								 }
+                	//end of postmate ajax call	   
                     });
+                //end of for each loop    
                 });
-                var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
-                setTimeout(function() {
-                    $("div.result").not(".deliverable").append(pError)
-                }, 10000);
+				
+					
+                	
+				
 
+				$(document).on('click', '.btn_b', function(e){
+       			$("#back-to-results").remove();
+       			$(document).scrollTop(0);
+
+                // e.preventDefault();
+                var backButton = $("<input />", {
+		            type: 'button',
+		            value: "Not feelin' it? Go back!",
+		            class: 'back_button',
+		            id: 'back-to-results'
+		        });
+        		$(".deliveryForm").prepend(backButton);
+                var dropOffName = $("#enterDropOffName").val();
+                var dropOffAddress = $(this).closest('.result').attr("data-dropoff-address");
+                $("#enterDropOffAddress").val(dropOffAddress);
+                var pickupName = $(this).closest('.result').attr("data-pickup-name");
+                $("#enterPickUpName").val(pickupName);
+                var pickupAddress = $(this).closest('.result').attr("data-pickup-address");
+                $("#enterPickUpAddress").val(pickupAddress);
+                var quoteID = $(this).closest('.result').attr("data-quote");
+                $("#enterCustNumber").val(quoteID);
+                var deliveryFee = $(this).closest('.result').attr("data-delivery-fee");
+                var deliveryFeeHTML = '<b id="deliveryFeeHTML">Your Delivery Fee Is:  $' + deliveryFee + '<br /><br /><br /></b>'
+                $("#dropOffNotes").prepend(deliveryFeeHTML);
+                // console.log(test);
+                hideResults();
+                displayDelivery();
+        		goBackToResults();
+
+
+                    })
+					
+					// $.ajax(postMateSettings).done(function(response) {
+     //            var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
+     //            setTimeout(function() {
+     //                $("div.result").not(".deliverable").append(pError)
+     //            	}, 5000);
+     //            });
                 // if (response.restaurants[i] == undefined){
                 //  				$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
                 // }else if (response.restaurants[i].restaurant.location.city_id == city){
@@ -185,11 +274,12 @@ $(document).ready(function() {
                 // }else{
                 // 	$("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
                 // }
-
+//zomato ajax call closed
             });
+//else statement closed
         }
-
+//search form submit closed
     });
 
-
+//document ready closed
 });

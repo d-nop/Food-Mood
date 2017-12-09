@@ -1,154 +1,153 @@
 .jumbotron {
 
-	text-align: center;
-	font-family: 'Archivo Black', sans-serif;
-	border-style: solid;
-	border-color: gray;
-	border-width: 2px;
-	border-radius: 20px;
-	background-color: orange;
-	color: white;
-
-
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+    background-color: orange;
+    color: white;
 }
 
 #keyTerm {
 
-	align-items: center;
-	color: gray;
-	text-align: center;
-	width: 30%;
-	border-style: solid;
-	border-color: gray;
-	border-width: 2px;
-	border-radius: 20px;
-
+    align-items: center;
+    color: gray;
+    text-align: center;
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #addressTerm {
-	align-items: center;
-	color: gray;
-	text-align: center;
-	width: 30%;
-	border-style: solid;
-	border-color: gray;
-	border-width: 2px;
-	border-radius: 20px;
-
+    align-items: center;
+    color: gray;
+    text-align: center;
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 
 .submitInfo {
 
-	background-color: white;
-	padding: 30px 30px 30px 30px;
-	text-align: center;
-	border-style: solid;
-	border-color: gray;
-	border-width: 2px;
-	border-radius: 20px;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: center;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+    background: rgb(255, 255, 255); /* Fallback for older browsers without RGBA-support */
+    background: rgba(255, 255, 255, 0.9);
 }
 
 #enterFood {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #enterAddress {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #enterCity {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #city {
 
-	color: gray;
-	text-align: center;
+    color: gray;
+    text-align: center;
+}
+.loading{
+display: none;
 
 }
-
 #seeResults {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: white;
-	background-color: orange;
-	padding: 30px 30px 30px 30px;
-	font-size: 24px;
-	border-style: solid;
-	border-color: gray;
-	border-width: 2px;
-	border-radius: 20px;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    background-color: orange;
+    padding: 30px 30px 30px 30px;
+    font-size: 24px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
-	}
+
+}
 
 #enterState {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #state {
 
-	color: gray;
-	text-align: center;
-
+    color: gray;
+    text-align: center;
 }
 
 #enterRadius {
-	
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
+
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #radius {
 
-	text-align: center;
-	color: gray;
+    text-align: center;
+    color: gray;
 }
 
 #results {
 
-	text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black', sans-serif;
 }
 
 #filterResults {
 
-	text-align: center;
-	color: gray;
+    text-align: center;
+    color: gray;
 }
-.results{
-	display: none;
-}
+
 
 #dumpResults {
-	color:orange;
-	border-style: solid;
-	border-color: gray;
-	border-radius: 15px;
-	background-color: white;
-	padding: 30px 30px 30px 30px;
-	text-align: left;
 
-	}
+    color: orange;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: left;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+    background: rgb(255, 255, 255); /* Fallback for older browsers without RGBA-support */
+    background: rgba(255, 255, 255, 0.9);
+
+}
+
 .btn_a {
     border-style: solid;
     border-color: gray;
@@ -159,8 +158,6 @@
     margin-right: 10px;
     text-align: center;
 
-    /*float:right;*/
-
 }
 .btn_b {
     border-style: solid;
@@ -170,40 +167,37 @@
     font-family: 'Archivo Black', sans-serif;
     font-size: 15px;
     text-align: center;
-    /*float: right;*/
+
 }
 
- #buttons {
- 	float:right;
 
-
- }
-  
+#buttons{
+	float: right;
 
 }
 .results h1 {
 
-	color: orange;
-	text-align: left;
+    color: orange;
+    text-align: left;
 }
 
 .result p {
 
-	color: orange;
-	text-align: left;
-
+    color: black;
+    text-align: left;
 }
 
-#back_button {
+.back_button {
 
-	border-style: solid;
-	border-color: gray;
-	border-radius: 10px;
-	padding: 30px 30px 30px 30px;
-	background-color: orange;
-	color: white;
-	font-family: 'Archivo Black', sans-serif;
-	font-size: 24px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 10px;
+    padding: 30px 30px 30px 30px;
+    background-color: orange;
+    color: white;
+    font-family: 'Archivo Black',
+    sans-serif;
+    font-size: 24px;
 }
 
 hr {
@@ -215,8 +209,8 @@ hr {
 
 @media only screen and (max-width: 500px) {
     #seeResults {
-   
-       	display: inline-block;
+
+        display: inline-block;
         text-align: center;
         font-size: 20px;
     }
@@ -224,90 +218,144 @@ hr {
 
 @media only screen and (max-width: 450px) {
 
-	#seeResults {
+    #seeResults {
 
-		display: inline-block;
-		text-align: center;
-		font-size: 20px;
-	}
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+    }
 }
 
 .deliveryForm {
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: center;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 
-	border-style: solid;
-	border-color: gray;
-	border-radius: 15px;
-	background-color: white;
-	padding: 30px 30px 30px 30px;
-	text-align: center;
 }
 
 #dropOffName {
 
-		text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterDropOffName {
+
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #dropOffAddress {
-		text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterDropOffAddress {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #pickUpName {
 
-	text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterPickUpName {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #pickUpAddress {
 
-	text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterPickUpAddress {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #custNumber {
 
-	text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterCustNumber {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #dropOffNotes {
 
-	text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+#enterDropOffNotes {
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #placeDelivery {
 
 
-	font-family: 'Archivo Black', sans-serif;
-	color: white;
-	background-color: orange;
-	border-radius: 10px;
-	padding: 30px 30px 30px 30px;
-	font-size: 24px;
-
+    font-family: 'Archivo Black',
+    sans-serif;
+    color: white;
+    background-color: orange;
+    border-radius: 10px;
+    padding: 30px 30px 30px 30px;
+    font-size: 24px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
-.delivery {
 
-	display: none;
-}
 
 #displayStatus {
-	color:orange;
-	border-style: solid;
-	border-color: gray;
-	border-radius: 15px;
-	background-color: white;
-	padding: 30px 30px 30px 30px;
-	text-align: left;
-
-	}
-
+    color:orange;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 15px;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: left;
+    display: none;
+}
