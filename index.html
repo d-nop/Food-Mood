@@ -6,11 +6,10 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/javascript/fm.js"></script>
-   
     <style>
     body {
 
@@ -34,7 +33,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="jumbotron">
             <h1>In the Food Mood?<br />Look up your Options!</h1>
@@ -60,8 +58,8 @@
                         <option value="276">Dallas, TX</option>
                         <option value="291">Miami, FL</option>
                     </select>
-               
-				<br><br>
+                    <br>
+                    <br>
                     <p id="results"> Number of Results: </p>
                     <select id="filterResults" name="Number of Results">
                         <option value="5">5</option>
@@ -76,99 +74,74 @@
 				<input id="radius" type="text" value="ex: 10">
 
 				<br><br>-->
+                    <input id="seeResults" type="button" value="Start Munching!">
+                </form>
+            </div>
+        </div>
+        <div class="row loading">
+            <div class="col-md-12">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 quote">
+                    <p>“Patience is bitter, but its fruit is sweet.” ― Aristotle</p>
+                </div>
+            </div>
+        </div>
 
-				<input id="seeResults" type="button" value="Start Munching!">
-				
-
-				</form>
-
-			</div>
-
-		</div>
-	<div class="row loading">	
-			<div class="col-md-12">
-				<div class="submitInfo">	
-					Searching For Some Delicious Options!
-				</div>
-			</div>
-	</div>
-
-	<div class="row results" style="display: none;">	
-			<div class="col-md-12">
-				<div id="dumpResults">	
-
-				</div>
-			</div>
-	</div>
-
-	<div class="row delivery" style="display: none;">
-
-		<div class="col-md-12">
-
-				<form class="deliveryForm">
-
-					<p id="dropOffName"> Customer Name: </p>
-
-					<input id="enterDropOffName" type="text">
-
-					<br><br>
-
-					<p id="dropOffAddress"> Customer Address: </p>
-
-					<input id="enterDropOffAddress" type="text">
-
-					<br><br>
-
-					<p id="pickUpName"> Restaurant Name: </p>
-
-					<input id="enterPickUpName" type="text">
-
-					<br><br>
-
-					<p id="pickUpAddress"> Restaurant Address: </p>
-
-					<input id="enterPickUpAddress" type="text">
-
-					<br><br>
-
-
-					<p id="dropOffNotes"> Additional Notes: (Optional) </p>
-
-					<textarea id="enterDropOffNotes" rows="10" cols="50"></textarea>
-
-					<br><br>
-
-					<input id="placeDelivery" type="button" value="Place your order!">
-
-				</form>
-		</div>
-	</div>
-	<div class="row status" style="display: none;">
-
-			<div class="col-md-12">
-
-				<div id="displayStatus">
-					<div id='courier-name' style='text-align: center;'>
-					</div>
-					<div id='delivery-time' style='text-align: center;'>
-					</div>
-					<div id="status-animate">
-						<h1>Pending</h1>
-					</div>
-				</div>
-
-			</div>
-
-	</div>
-
-			
-
-
-
-
-
-</div>
-
+        <div class="row results" style="display: none;">
+            <div class="col-md-12">
+                <div id="dumpResults">
+                </div>
+            </div>
+        </div>
+        <div class="row delivery" style="display: none;">
+            <div class="col-md-12">
+                <form class="deliveryForm">
+                    <p id="dropOffName"> Customer Name: </p>
+                    <input id="enterDropOffName" type="text">
+                    <br>
+                    <br>
+                    <p id="dropOffAddress"> Customer Address: </p>
+                    <input id="enterDropOffAddress" type="text">
+                    <br>
+                    <br>
+                    <p id="pickUpName"> Restaurant Name: </p>
+                    <input id="enterPickUpName" type="text">
+                    <br>
+                    <br>
+                    <p id="pickUpAddress"> Restaurant Address: </p>
+                    <input id="enterPickUpAddress" type="text">
+                    <br>
+                    <br>
+                    <p id="dropOffNotes"> Additional Notes: (Optional) </p>
+                    <textarea id="enterDropOffNotes" rows="10" cols="50"></textarea>
+                    <br>
+                    <br>
+                    <input id="placeDelivery" type="button" value="Place your order!">
+                </form>
+            </div>
+        </div>
+        <div class="row status" style="display: none;">
+            <div class="col-md-12">
+                <div id="displayStatus">
+                    <div id='courier-name' style='text-align: center;'>
+                    </div>
+                    <div id='delivery-time' style='text-align: center;'>
+                    </div>
+                    <div id="status-animate">
+                        <h1>Pending</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
