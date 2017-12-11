@@ -1,179 +1,215 @@
 .jumbotron {
 
-	text-align: center;
-	font-family: 'Archivo Black', sans-serif;
-	background-color: orange;
-	color: white;
-
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+    background-color: orange;
+    color: white;
 }
 
 #keyTerm {
 
-	align-items: center;
-	color: gray;
-	text-align: center;
+    align-items: center;
+    color: gray;
+    text-align: center;
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 #addressTerm {
-	align-items: center;
-	color: gray;
-	text-align: center;
+    align-items: center;
+    color: gray;
+    text-align: center;
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
 }
 
 
 .submitInfo {
 
-	border-style: solid;
-	border-color: gray;
-	border-radius: 15px;
-	background-color: white;
-	padding: 30px 30px 30px 30px;
-	text-align: center;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: center;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+    background: rgb(255, 255, 255); /* Fallback for older browsers without RGBA-support */
+    background: rgba(255, 255, 255, 0.9);
 }
 
 #enterFood {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #enterAddress {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #enterCity {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #city {
 
-	color: gray;
-	text-align: center;
+    color: gray;
+    text-align: center;
+}
+.loading{
+display: none;
 
 }
 
+.quote{
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 20px;
+    background-color: orange;
+    color: white;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
 #seeResults {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: white;
-	background-color: orange;
-	border-radius: 10px;
-	padding: 30px 30px 30px 30px;
-	font-size: 24px;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    background-color: orange;
+    padding: 30px 30px 30px 30px;
+    font-size: 24px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
 
-	}
+
+}
 
 #enterState {
 
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
-
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #state {
 
-	color: gray;
-	text-align: center;
-
+    color: gray;
+    text-align: center;
 }
 
 #enterRadius {
-	
-	font-family: 'Archivo Black', sans-serif;
-	color: gray;
-	text-align: center;
+
+    font-family: 'Archivo Black', sans-serif;
+    color: gray;
+    text-align: center;
 }
 
 #radius {
 
-	text-align: center;
-	color: gray;
+    text-align: center;
+    color: gray;
 }
 
 #results {
 
-	text-align: center;
-	color: gray;
-	font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black', sans-serif;
 }
 
 #filterResults {
 
-	text-align: center;
-	color: gray;
+    text-align: center;
+    color: gray;
 }
-.results{
-	display: none;
-}
+
 
 #dumpResults {
-	color:orange;
-	border-style: solid;
-	border-color: gray;
-	border-radius: 15px;
-	background-color: white;
-	padding: 30px 30px 30px 30px;
-	text-align: left;
 
-	}
-#btn_a {
+    color: orange;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: left;
     border-style: solid;
     border-color: gray;
-    background-color: orange;
-    color: white;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 25px;
-    text-align: center;
-    float:right;
+    border-width: 2px;
+    border-radius: 20px;
+    background: rgb(255, 255, 255); /* Fallback for older browsers without RGBA-support */
+    background: rgba(255, 255, 255, 0.9);
 
 }
-#btn_b {
+
+.btn_a {
     border-style: solid;
     border-color: gray;
     background-color: orange;
     color: white;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 25px;
-    margin-right: 15px;
+    font-size: 15px;
+    margin-right: 10px;
     text-align: center;
-    float: right;
-  
+
+}
+.btn_b {
+    border-style: solid;
+    border-color: gray;
+    background-color: orange;
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 15px;
+    text-align: center;
+
+}
+
+
+#buttons{
+	float: right;
 
 }
 .results h1 {
 
-	color: orange;
-	text-align: left;
+    color: orange;
+    text-align: left;
 }
 
 .result p {
 
-	color: orange;
-	text-align: left;
-
+    color: black;
+    text-align: left;
 }
 
-#back_button {
+.back_button {
 
-	border-style: solid;
-	border-color: gray;
-	border-radius: 10px;
-	padding: 30px 30px 30px 30px;
-	background-color: orange;
-	color: white;
-	font-family: 'Archivo Black', sans-serif;
-	font-size: 24px;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    text-align: center;
 }
 
 hr {
@@ -183,4 +219,252 @@ hr {
     height: 3px !important;
 }
 
+@media only screen and (max-width: 500px) {
+    #seeResults {
+
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    #seeResults {
+
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+.deliveryForm {
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: center;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+
+}
+
+#dropOffName {
+
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterDropOffName {
+
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+#dropOffAddress {
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterDropOffAddress {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+#pickUpName {
+
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterPickUpName {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+#pickUpAddress {
+
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterPickUpAddress {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+#custNumber {
+
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+
+#enterCustNumber {
+    width: 30%;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+#dropOffNotes {
+
+    text-align: center;
+    color: gray;
+    font-family: 'Archivo Black',
+    sans-serif;
+}
+#enterDropOffNotes {
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+#placeDelivery {
+
+
+    font-family: 'Archivo Black',
+    sans-serif;
+    color: white;
+    background-color: orange;
+    border-radius: 10px;
+    padding: 30px 30px 30px 30px;
+    font-size: 24px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+
+
+#displayStatus {
+    color:orange;
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    text-align: left;
+  
+}
+
+
+#status-animate {
+	height: 70px;
+    margin: 2%;
+	border-radius: 10px;
+    position: relative;
+    -webkit-animation: mymove 5s; 
+    -webkit-animation-iteration-count: infinite; 
+    animation: bgflash 5s;
+    animation-iteration-count: infinite;
+}
+
+#status-animate h1 {
+	line-height: 200%;
+	color: orange;
+    position: relative;
+    -webkit-animation: mymove 5s;  
+    -webkit-animation-iteration-count: infinite; 
+    animation: statusmove 5s;
+    animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes mymove {
+    from {top: 0px;}
+    to {top: 200px;}
+}
+
+@keyframes statusmove {
+    0% {left: 0px;}
+    50% {color: red; left: 70%;}
+    100% {left: 0px;}
+   
+}
+
+@keyframes bgflash {
+    0% {}
+    50% {background-color: orange;}
+    100% {}
+   
+}
+
+.spinner {
+  margin: auto;
+  width: 200px;
+  height: 160px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.spinner > div {
+  background-color: white;
+  height: 50%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
 
