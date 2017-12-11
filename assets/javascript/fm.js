@@ -1,18 +1,22 @@
 function displayLoading() {
+    $(".searchForm").css("display", "none");
     $(".delivery").css("display", "none");
     $(".loading").css("display", "block");
 
 }
 
 function displayResults() {
+    // $(".searchForm").css("display", "none");
+    $(".delivery").css("display", "none");
     $(".results").css("display", "block");
     $(".jumbotron > h1").html("Choose Your Mood");
     displayResults.called = true;
-    var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
-				$("div.result").not(".deliverable").append(pError);
+    // var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
+				// $("div.result").not(".deliverable").append(pError);
 }
 
 function displayDelivery() {
+    $(".results").css("display", "none");
     $(".delivery").css("display", "block");
     $(".jumbotron > h1").html("Time For Your Delivery!");
 
@@ -30,37 +34,29 @@ function hideDelivery() {
 
 }
 
-function hideResults() {
-    $(".results").css("display", "none");
-
-}
 
 function hideLoading() {
     $(".loading").css("display", "none");
 
 }
 
-function hideSearchForm() {
-    $(".searchForm").css("display", "none");
-
-}
 
 function displaySearchForm() {
     $(".searchForm").css("display", "block");
+    $(".results").css("display", "none");
 
 }
 
 function goBack() {
-    $(".back_button").on("click", function() {
+    $("#back-to-search").on("click", function() {
         displaySearchForm();
         $(".jumbotron > h1").html("In the Food Mood?<br /> Look up your Options!");
-        hideResults();
     })
 }
 
 function goBackToResults() {
-    $(document).on('click', '.back_button', function() {
-        hideDelivery();
+    $(document).on('click', '#back-to-results', function() {
+        // hideDelivery();
         $(".jumbotron > h1").html("Choose Your Mood");
         displayResults();
         $("#deliveryFeeHTML").remove();
@@ -83,6 +79,7 @@ $("#delivery-time").html("<h2>Your Delivery Should Arrive by " + timeString + "<
 
     //console.log(localDate);
 }
+
 
 
 $(document).ready(function() {
@@ -135,7 +132,17 @@ $(document).ready(function() {
                 $("#no-results").append("<p style='color: red;'>Please Enter A City</p>");
             }
         } else {
-        	hideSearchForm();
+            function postMateApiDone() {
+                if(postMatesApiCounter == resultCount){
+                console.log("enable all the buttons");
+                hideLoading();
+                displayResults();
+                goBack();
+                }
+
+            }
+            let postMatesApiCounter = 0;
+        	// hideSearchForm();
             displayLoading();
             $.ajax(settings).done(function(response) {
                 console.log(response);
@@ -144,6 +151,7 @@ $(document).ready(function() {
                     	hideLoading();
                         displaySearchForm();
                 }
+                
 
                 //response.restaurants[i] = results
                 response.restaurants.forEach((results, index, array) => {
@@ -167,20 +175,10 @@ $(document).ready(function() {
                     var span = $("<span id='buttons'>");
 
                     span.append(menuSite);
-                    // var deliveryButtonDiv = $('<div />', { 'data-role': 'fieldcontain' });
-                    // var postmateSite = $("<a href='https://postmates.com' target='_blank'>");
+
                     var displayDeliveryButton = $('<button>', );
                     displayDeliveryButton.attr("class", "btn btn-success btn_b");
                     displayDeliveryButton.text("Place Delivery");
-                    // span.append(displayDeliveryButton);
-                    // deliveryButtonDiv.append(displayDeliveryButton);
-
-
-                    // postmateSite.append(displayDeliveryButton);
-                    // menuButtonDiv.append(menuSite).appendTo($('#pg_menu_content').empty());
-                    // deliveryButtonDiv.append(postmateSite).appendTo($("pg_menu_content").empty());
-
-
                     var pRestaurantRating = $("<p>").html("<b> Rating: </b>" + restaurantRating + " " + restaurantRatingText);
 
                     resultDiv.append(headerRestaurantName);
@@ -211,11 +209,15 @@ $(document).ready(function() {
                         "processData": false,
                         "contentType": false,
                         "mimeType": "multipart/form-data",
-                        "data": form
+                        "data": form,
+                        "error": function(){var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
+                            resultDiv.append(pError);}
                     }
 
 
-                    $.ajax(postMateSettings).done(function(response) {
+                  $.ajax(postMateSettings).done(function(response) {
+
+
                         response = JSON.parse(response);
                         console.log(response);
                         console.log("-------------------------");
@@ -226,31 +228,37 @@ $(document).ready(function() {
                         resultDiv.attr('data-delivery-fee', deliveryFee);
                         resultDiv.append(pDeliveryFee);
                         resultDiv.addClass("deliverable");
-                        if ("div.deliverable"){
-                        span.append(displayDeliveryButton)
-                    	}
-               			
-                			if (index === array.length - 1){ 
-       								console.log("Last callback call at index " + index + " with value " + results ); 
-  								 // noDelivery();
-  								 setTimeout(function() {
-  								 	hideLoading();
-               						displayResults();
-                					goBack();
-  								 }, 2000);
-
-  								 }
+                        span.append(displayDeliveryButton);
+                        postMatesApiCounter++
+                        console.log(postMatesApiCounter);
+                        console.log(resultCount);
+                        postMateApiDone();
+                        
+                        
+               			// console.log(index);
+                  //       console.log(array);
+                  //       console.log("----------------");
+                  //       console.log(resultCount);
                 	//end of postmate ajax call	   
-                    });
-                //end of for each loop    
-                });
-				
-					
+                    }).fail(function() {
+                        console.log("failed")
+                        postMatesApiCounter++
+                        console.log(postMatesApiCounter);
+                        console.log(resultCount)
+                        postMateApiDone();
+                    })
+                //end of for each loop  
+
+                }); 
+                
+                    
+				           
                 	
 				
 
 				$(document).on('click', '.btn_b', function(e){
        			$("#back-to-results").remove();
+                $("#deliveryFeeHTML").remove();
        			$(document).scrollTop(0);
 
                 // e.preventDefault();
@@ -278,7 +286,7 @@ $(document).ready(function() {
                 var deliveryFeeHTML = '<b id="deliveryFeeHTML">Your Delivery Fee Is:  $' + deliveryFee + '<br /><br /><br /></b>'
                 $("#dropOffNotes").prepend(deliveryFeeHTML);
                 // console.log(test);
-                hideResults();
+                // hideResults();
                 displayDelivery();
         		goBackToResults();
         			$('#placeDelivery').on('click', function(){
@@ -340,7 +348,8 @@ $(document).ready(function() {
 									  response = JSON.parse( response );
 									  console.log(response);
 									  displayStatus();
-									  setInterval(function(){
+                                      // setInterval(function(){},12000)
+									  var ajaxCheck = setInterval(function(){
 									  	$.ajax(postmateDeliveryStatus).done(function (response) {
 													response = JSON.parse( response );
 													console.log(response);
@@ -353,6 +362,7 @@ $(document).ready(function() {
 													if (deliveryStatus === "delivered"){
 														$("#courier-name").html("<h2>Your Item Has Been Delivered!</h2>");	
 														$("#delivery-time").html("");
+                                                        clearInterval(ajaxCheck);
 														}else if (deliveryStatus === "pickup" || deliveryStatus === "pickup_complete" || deliveryStatus === "dropoff"){
 														// var deliveryETA = response.dropoff_deadline;
 														// timeConverter(deliveryETA);
@@ -372,10 +382,10 @@ $(document).ready(function() {
 
 
         				//end of #placeDelivery button
-        				})
+        				});
 
         			//end of .btn_b click handler
-                    })
+                    });
 //zomato ajax call closed
             });
 //else statement closed
