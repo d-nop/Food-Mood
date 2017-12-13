@@ -15,25 +15,12 @@
     align-items: center;
     color: gray;
     text-align: center;
-    /*width: 30%;*/
     border-style: solid;
     border-color: gray;
     border-width: 2px;
     border-radius: 20px;
     width: 40%;
 }
-
-/*#addressTerm {
-    align-items: center;
-    color: gray;
-    text-align: center;
-    width: 30%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 2px;
-    border-radius: 20px;
-}*/
-
 
 .submitInfo {
 
@@ -278,29 +265,12 @@ hr {
     sans-serif;
 }
 
-/*#enterDropOffName {
-
-    width: 30%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 2px;
-    border-radius: 20px;
-}*/
-
 #dropOffAddress {
     text-align: center;
     color: gray;
     font-family: 'Archivo Black',
     sans-serif;
 }
-
-/*#enterDropOffAddress {
-    width: 30%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 2px;
-    border-radius: 20px;
-}*/
 
 #pickUpName {
 
@@ -310,14 +280,6 @@ hr {
     sans-serif;
 }
 
-/*#enterPickUpName {
-    width: 30%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 2px;
-    border-radius: 20px;
-}*/
-
 #pickUpAddress {
 
     text-align: center;
@@ -326,14 +288,6 @@ hr {
     sans-serif;
 }
 
-/*#enterPickUpAddress {
-    width: 30%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 2px;
-    border-radius: 20px;
-}*/
-
 #custNumber {
 
     text-align: center;
@@ -341,14 +295,6 @@ hr {
     font-family: 'Archivo Black',
     sans-serif;
 }
-
-/*#enterCustNumber {
-    width: 30%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 2px;
-    border-radius: 20px;
-}*/
 
 #dropOffNotes {
 

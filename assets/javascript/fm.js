@@ -6,13 +6,10 @@ function displayLoading() {
 }
 
 function displayResults() {
-    // $(".searchForm").css("display", "none");
     $(".delivery").css("display", "none");
     $(".results").css("display", "block");
     $(".jumbotron > h1").html("Choose Your Mood");
-    displayResults.called = true;
-    // var pError = $("<p>").html("<b>Sorry, No Deliveries To Your Area</b><hr></hr>");
-				// $("div.result").not(".deliverable").append(pError);
+
 }
 
 function displayDelivery() {
@@ -65,7 +62,6 @@ function goBackToResults() {
 }
 
 timeConverter = (utcTime) => {
-  console.log("The TIME IN UTC IS "+ utcTime)
   var localTime = new Date(utcTime);
   var amPm = new Date(localTime);
   var options = {
@@ -74,10 +70,8 @@ timeConverter = (utcTime) => {
       hour12: true
   };
   var timeString = amPm.toLocaleString('en-US', options);
-  console.log("THE LOCAL TIME IS "+ timeString);
 $("#delivery-time").html("<h2>Your Delivery Should Arrive by " + timeString + "</h2>");
 
-    //console.log(localDate);
 }
 
 
@@ -111,15 +105,6 @@ $(document).ready(function() {
             }
         }
 
-
-
-        console.log(enterAddress);
-        console.log(city);
-        console.log(cityState);
-        console.log(userAddress)
-        console.log(search);
-        console.log(resultCount);
-        console.log(settings.url);
         $("#no-results").empty();
         if (search === "" || enterAddress === "" || city === "Choose Your City") {
             if (search === "") {
@@ -134,7 +119,6 @@ $(document).ready(function() {
         } else {
             function postMateApiDone() {
                 if(postMatesApiCounter == resultCount){
-                console.log("enable all the buttons");
                 hideLoading();
                 displayResults();
                 goBack();
@@ -142,18 +126,14 @@ $(document).ready(function() {
 
             }
             let postMatesApiCounter = 0;
-        	// hideSearchForm();
             displayLoading();
             $.ajax(settings).done(function(response) {
-                console.log(response);
                 if (response.results_found == 0) {
                     $("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>")
                     	hideLoading();
                         displaySearchForm();
                 }
                 
-
-                //response.restaurants[i] = results
                 response.restaurants.forEach((results, index, array) => {
                     var restaurantName = results.restaurant.name;
                     var restaurantAddress = results.restaurant.location.address;
@@ -166,7 +146,6 @@ $(document).ready(function() {
 
                     var pRestaurantRating = $("<p>").html("<b>Rating: </b>" + restaurantRating + " " + restaurantRatingText);
 
-                    // var menuButtonDiv = $('<div />', { 'data-role': 'fieldcontain' });
                     var menuSite = $("<a href='" + restaurantMenu + "' target='_blank'>");
                     var displayMenuButton = $('<button>');
                     displayMenuButton.attr("class", "btn btn-primary btn_a");
@@ -185,9 +164,7 @@ $(document).ready(function() {
                     resultDiv.append(pRestaurantAddress);
                     resultDiv.append(pRestaurantRating);
                     resultDiv.append(span);
-                    // resultDiv.append(deliveryButtonDiv);
 
-                    console.log(results.restaurant.name)
                     if (results.restaurant.location.city_id != city) {
                         $("#no-results").html("<p style='color: red;'>Sorry, No Results For That Search</p>");
                         }
@@ -219,8 +196,6 @@ $(document).ready(function() {
 
 
                         response = JSON.parse(response);
-                        console.log(response);
-                        console.log("-------------------------");
                         let deliveryFee = (response.fee / 100).toFixed(2);
                         var pDeliveryFee = $("<p id='delivery-fee'>").html("<b>The Delivery Fee is: </b>$" + deliveryFee + "<hr></hr>");
                         var quoteID = response.id;
@@ -230,38 +205,22 @@ $(document).ready(function() {
                         resultDiv.addClass("deliverable");
                         span.append(displayDeliveryButton);
                         postMatesApiCounter++
-                        console.log(postMatesApiCounter);
-                        console.log(resultCount);
                         postMateApiDone();
-                        
-                        
-               			// console.log(index);
-                  //       console.log(array);
-                  //       console.log("----------------");
-                  //       console.log(resultCount);
+
                 	//end of postmate ajax call	   
                     }).fail(function() {
-                        console.log("failed")
                         postMatesApiCounter++
-                        console.log(postMatesApiCounter);
-                        console.log(resultCount)
                         postMateApiDone();
                     })
                 //end of for each loop  
 
                 }); 
                 
-                    
-				           
-                	
-				
-
 				$(document).on('click', '.btn_b', function(e){
        			$("#back-to-results").remove();
                 $("#deliveryFeeHTML").remove();
        			$(document).scrollTop(0);
 
-                // e.preventDefault();
                 var backButton = $("<input />", {
 		            type: 'button',
 		            value: "Not feelin' it? Go back!",
@@ -279,21 +238,17 @@ $(document).ready(function() {
                 $("#enterPickUpAddress").val(pickupAddress);
 
                 var quoteID = $(this).closest('.result').attr("data-quote");
-                // $("#enterCustNumber").val(quoteID);
 
                 var deliveryFee = $(this).closest('.result').attr("data-delivery-fee");
 
                 var deliveryFeeHTML = '<b id="deliveryFeeHTML">Your Delivery Fee Is:  $' + deliveryFee + '<br /><br /><br /></b>'
                 $("#dropOffNotes").prepend(deliveryFeeHTML);
-                // console.log(test);
-                // hideResults();
                 displayDelivery();
         		goBackToResults();
         			$('#placeDelivery').on('click', function(){
         				$(".submitInfo").html("Please wait while we process your delivery.")
 						displayLoading();
                			var dropOffName = $("#enterDropOffName").val();
-                		console.log(dropOffName);
         				var form = new FormData();
 						form.append("pickup_address", pickupAddress);
 						form.append("dropoff_address", dropOffAddress);
@@ -304,7 +259,6 @@ $(document).ready(function() {
 						form.append("manifest", "tuna melt");
 						form.append("quote_id", quoteID);
 						form.append("robo_pickup", "00:00:10");
-						// form.append("robo_pickup_complete", "00:00:20");
 						form.append("robo_dropoff", "00:00:20");
 						form.append("robo_delivered", "00:00:30");
 
@@ -327,9 +281,7 @@ $(document).ready(function() {
 
 						$.ajax(postmateCreateDelivery).done(function (response) {
 						  response = JSON.parse( response );
-						  console.log(response);
 						  var deliveryID = response.id;
-						  console.log(deliveryID);
 						  				var postmateDeliveryStatus = {
 										  "async": true,
 										  "crossDomain": true,
@@ -346,13 +298,10 @@ $(document).ready(function() {
 										}
 						  		$.ajax(postmateDeliveryStatus).done(function (response) {
 									  response = JSON.parse( response );
-									  console.log(response);
 									  displayStatus();
-                                      // setInterval(function(){},12000)
 									  var ajaxCheck = setInterval(function(){
 									  	$.ajax(postmateDeliveryStatus).done(function (response) {
 													response = JSON.parse( response );
-													console.log(response);
 													var deliveryStatus = response.status;
 													$("#status-animate h1").html(deliveryStatus.charAt(0).toUpperCase() + deliveryStatus.slice(1));
 													
@@ -364,8 +313,6 @@ $(document).ready(function() {
 														$("#delivery-time").html("");
                                                         clearInterval(ajaxCheck);
 														}else if (deliveryStatus === "pickup" || deliveryStatus === "pickup_complete" || deliveryStatus === "dropoff"){
-														// var deliveryETA = response.dropoff_deadline;
-														// timeConverter(deliveryETA);
 														var courier = response.courier.name;
 														$("#courier-name").html("<h2>Your courier " + courier + " is on the way!</h2>");
 														$("#delivery-time").html("<h3>Your Delivery Should Arrive In Just A Few Minutes</h3>");
