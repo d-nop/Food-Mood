@@ -1,9 +1,6 @@
 Team Members: Leaveil Armstrong, Daniel Nop, Brad Whitcomb, Mara Greco
 
-Project Description: A food application that allows one to research and order food from home.
-
-
-Foodmood: a GPS-Based Application for Finding Restaurants Near You!
+Food Mood: A food application that allows one to research restaurants and order food from home.
 
 User Instructions:
 
